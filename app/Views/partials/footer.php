@@ -4,20 +4,20 @@
     </div>
 
     <div class="flex flex-col md:flex-row text-center md:text-left justify-center mb-10">
-        <div class="border-r-none md:border-r border-r-accent-800 md:pr-5 mb-10">
+        <div class="s">
             <h2 class="font-bold mb-3 text-xl">Contacts</h2>
             <ul>
                 <li>propertize@gmail.com</li>
                 <li>+63123456789</li>
             </ul>
         </div>
-        <div class="md:ml-5">
+        <div class="md:ml-5 border-l-none md:border-l border-l-accent-800 md:pl-5">
             <h2 class="font-bold mb-3 text-xl">Explore</h2>
             <ul>
-                <li><a href="#">Buy a Home</a></li>
-                <li><a href="#">Sell a Home</a></li>
-                <li><a href="#">Rent a Home</a></li>
-                <li><a href="#">Manage Rent</a></li>
+                <li><a href="/buy" class="hover:underline">Buy</a></li>
+                <li><a href="/sell" class="hover:underline">Sell</a></li>
+                <li><a href="/rent" class="hover:underline">Rent</a></li>
+                <li><a href="/manage-rent" class="hover:underline">Manage Rent</a></li>
             </ul>
         </div>
     </div>
