@@ -16,3 +16,70 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+select {
+    border-right: 16px solid transparent
+}
+
+button[aria-expanded="true"] {
+    background-color: #313131 !important;
+    color: white !important; 
+}
+
+.glow-text-white {
+    text-shadow:
+    0 0 10px #696969, 
+    0 0 40px #696969,
+    0 0 60px #696969, 
+    0 0 80px #696969; 
+}
+
+.glow-text-white-lg {
+    text-shadow:
+    0 0 15px #696969, 
+    0 0 70px #69696983, 
+    0 0 100px #696969;
+}
+
+.glow-box-yellow {
+    box-shadow:
+    0 0 10px #668000, 
+    0 0 40px #668000,
+    0 0 60px #668000, 
+    0 0 80px #668000; 
+}
+
+.glow-text-yellow {
+    text-shadow:
+    0 0 10px #668000, 
+    0 0 40px #668000,
+    0 0 60px #668000, 
+    0 0 80px #668000; 
+}
+
+.glow-text-yellow-lg {
+    text-shadow:
+    0 0 15px #668000,
+    0 0 70px #66800083,
+    0 0 100px #668000;
+}
+
+input[type="radio"] {
+    accent-color: #CCFF00;
+}
+
+input[type="checkbox"] {
+    accent-color: #CCFF00; 
+}
+
+/* scrollbar style */
+
+::-webkit-scrollbar { 
+    width: 12px; 
+}
+::-webkit-scrollbar-track {
+    background: #313131; 
+}
+::-webkit-scrollbar-thumb {
+    background: #4e4e4e; 
+    border-radius: 4px;
+}

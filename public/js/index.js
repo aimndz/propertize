@@ -1,4 +1,6 @@
 
+
+//-----------------------------toggle password-----------------------------------------
 const togglePasswordButtons = document.querySelectorAll('.togglePasswordButton');
 
     togglePasswordButtons.forEach(button => {
@@ -18,4 +20,4 @@ const togglePasswordButtons = document.querySelectorAll('.togglePasswordButton')
         }
     });
 });
-
+//-------------------------------photo script----------------------------------------------
