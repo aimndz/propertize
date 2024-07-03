@@ -9,9 +9,9 @@ Propertize | List Property
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<?= form_open('/sell-list', 'method="post" enctype="multipart/form-data"'); ?>
+<?= form_open('/rent-list', 'method="post" enctype="multipart/form-data"'); ?>
 <section class="max-w-screen-xl mx-auto px-4">
-    <h1 class="font-bold mt-28 text-2xl text-primary-100">Sell a Property</h1>
+    <h1 class="font-bold mt-28 text-2xl text-primary-100">Manage rent a Property</h1>
     <hr class="border-t-accent-800 mt-4">
     <div>
         <h2 class="text-primary-100 font-bold text-xl mt-10 mb-4">Address</h2>
@@ -571,6 +571,110 @@ Propertize | List Property
     <hr class="border-t-accent-800 mt-10">
 </section>
 <section class="max-w-screen-xl mx-auto px-4">
+    <h1 class="font-bold mt-10 text-2xl text-primary-100 mb-5">Rental Information</h1>
+    <div class="flex flex-col md:flex-row gap-5">
+        <div class="w-full">
+            <div class="relative w-full mb-5">
+                <input type="number" id="php-price" name="price" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent  disabled:opacity-50 disabled:pointer-events-none dark:bg-accent-900 dark:border-neutral-700 dark:text-primary-100 focus:ring-white
+                                                        focus:pt-6
+                                                        focus:pb-2
+                                                        [&:not(:placeholder-shown)]:pt-6
+                                                        [&:not(:placeholder-shown)]:pb-2
+                                                        autofill:pt-6
+                                                        autofill:pb-2" required placeholder="********">
+                <label for="php-price" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                                                        peer-focus:scale-75 peer-focus:translate-x-0.5
+                                                        peer-focus:-translate-y-1.5
+                                                        peer-focus:text-primary-200 dark:peer-focus:text-primary-200
+                                                        peer-[:not(:placeholder-shown)]:scale-75
+                                                        peer-[:not(:placeholder-shown)]:translate-x-0.5
+                                                        peer-[:not(:placeholder-shown)]:-translate-y-1.5
+                                                        peer-[:not(:placeholder-shown)]:text-primary-200 dark:peer-[:not(:placeholder-shown)]:text-primary-200">
+                    Monthly price
+                </label>
+            </div>
+            <div class="w-full flex-1 min-w-32">
+                <select id="lease-term" name="lease_term" class="p-4 text-gray-900 text-sm rounded-lg block w-full dark:bg-accent-900 dark:placeholder-primary-800 dark:text-white">
+                    <option class="hidden" selected disabled>Lease Term</option>
+                    <option value="6_months">6 Months</option>
+                    <option value="9_months">9 Months</option>
+                    <option value="12_months">12 Months</option>
+                    <option value="18_months">18 Months</option>
+                    <option value="24_months">24 Months</option>
+                    <option value="month_to_month">Month-to-Month</option>
+                    <option value="other">Other (Specify)</option>
+                </select>
+                <div id="custom-lease-term" class="relative hidden mt-4">
+                    <input type="number" id="custom-lease-term-input" name="custom_lease_term" class="peer p-4 w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent  disabled:opacity-50 disabled:pointer-events-none dark:bg-accent-900 dark:border-neutral-700 dark:text-primary-100 focus:ring-white
+                                                    focus:pt-6
+                                                    focus:pb-2
+                                                    [&:not(:placeholder-shown)]:pt-6
+                                                    [&:not(:placeholder-shown)]:pb-2
+                                                    autofill:pt-6
+                                                    autofill:pb-2" placeholder="********">
+                    <label for="custom-lease-term-input" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                                                    peer-focus:scale-75 peer-focus:translate-x-0.5
+                                                    peer-focus:-translate-y-1.5
+                                                    peer-focus:text-primary-200 dark:peer-focus:text-primary-200
+                                                    peer-[:not(:placeholder-shown)]:scale-75
+                                                    peer-[:not(:placeholder-shown)]:translate-x-0.5
+                                                    peer-[:not(:placeholder-shown)]:-translate-y-1.5
+                                                    peer-[:not(:placeholder-shown)]:text-primary-200 dark:peer-[:not(:placeholder-shown)]:text-primary-200">
+                        Other lease term
+                    </label>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const leaseTermSelect = document.getElementById('lease-term');
+                        const customLeaseTermDiv = document.getElementById('custom-lease-term');
+                        const customLeaseTermInput = document.getElementById('custom-lease-term-input');
+
+                        leaseTermSelect.addEventListener('change', function() {
+                            if (leaseTermSelect.value === 'other') {
+                                customLeaseTermDiv.classList.remove('hidden');
+                                customLeaseTermInput.setAttribute('required', 'true');
+                            } else {
+                                customLeaseTermDiv.classList.add('hidden');
+                                customLeaseTermInput.removeAttribute('required');
+                            }
+                        });
+
+                        document.querySelector('form').addEventListener('submit', function(event) {
+                            if (leaseTermSelect.value === 'other' && customLeaseTermInput.value === '') {
+                                customLeaseTermInput.focus();
+                                event.preventDefault();
+                            }
+                        });
+                    });
+                </script>
+
+            </div>
+        </div>
+        <div class="w-full">
+            <p class="text-primary-100 mb-3">Utilities Included</p>
+            <div class="flex justify-start gap-10 w-full">
+                <div class="flex items-center mb-4">
+                    <input id="utilities-water" type="checkbox" value="water" name="utilities[]" class="w-4 h-4 border-gray-300 rounded">
+                    <label for="utilities-water" class="ms-2 text-sm font-medium text-primary-100">Water</label>
+                </div>
+                <div class="flex items-center mb-4">
+                    <input id="utilities-gas" type="checkbox" value="gas" name="utilities[]" class="w-4 h-4 border-gray-300 rounded">
+                    <label for="utilities-gas" class="ms-2 text-sm font-medium text-primary-100 ">Gas</label>
+                </div>
+                <div class="flex items-center mb-4">
+                    <input id="utilities-electricity" type="checkbox" value="electricity" name="utilities[]" class="w-4 h-4 border-gray-300 rounded">
+                    <label for="utilities-electricity" class="ms-2 text-sm font-medium text-primary-100 ">Electricity</label>
+                </div>
+                <div class="flex items-center mb-4">
+                    <input id="utilities-internet" type="checkbox" value="internet" name="utilities[]" class="w-4 h-4 border-gray-300 rounded">
+                    <label for="utilities-internet" class="ms-2 text-sm font-medium text-primary-100 ">Internet</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="border-t-accent-800 mt-10">
+</section>
+<!-- <section class="max-w-screen-xl mx-auto px-4">
     <h1 class="font-bold mt-10 text-2xl text-primary-100 mb-5">Set your price</h1>
     <div class="flex flex-col md:flex-row gap-5">
         <div class="relative w-1/2">
@@ -580,7 +684,7 @@ Propertize | List Property
                                                     [&:not(:placeholder-shown)]:pt-6
                                                     [&:not(:placeholder-shown)]:pb-2
                                                     autofill:pt-6
-                                                    autofill:pb-2" required step="0.01" placeholder="********">
+                                                    autofill:pb-2" required placeholder="********">
             <label for="php-price" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                     peer-focus:scale-75 peer-focus:translate-x-0.5
                                                     peer-focus:-translate-y-1.5
@@ -594,7 +698,7 @@ Propertize | List Property
         </div>
     </div>
     <hr class="border-t-accent-800 mt-10">
-</section>
+</section> -->
 <!-- <section class="max-w-screen-xl mx-auto px-4">
     <h1 class="font-bold mt-10 text-2xl text-primary-100 mb-5">Payment methods</h1>
     <div class="flex flex-col md:flex-row gap-5">
@@ -715,10 +819,7 @@ Propertize | List Property
     });
 </script> -->
 <div>
-    <input type="hidden" name="status" value="for sale">
-</div>
-<div>
-    <input type="hidden" name="approval_status" value="pending">
+    <input type="hidden" name="status" value="for rent">
 </div>
 <section class="max-w-screen-xl mx-auto px-4 mt-10">
     <button type="submit" class="font-bold mt-2 rounded-lg px-10 py-3 bg-primary-500 hover:bg-accent-600 focus:shadow-outline focus:outline-none">

@@ -4,149 +4,51 @@
 Propertize | Admin
 <?= $this->endSection() ?>
 
+<?= $this->section('navbar') ?>
+<?= $this->include('partials/admin-nav'); ?>
+<?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
-
-<header class="text-primary-100 fixed top-0 left-0 w-full z-50 bg-primary-900 shadow-header-shadow ">
-    <nav class="bg-primary-900">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="images/propertize-logo.png" class="h-8" alt="Propertize logo" />
-            </a>
-            <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-accent-800" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-                    <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="images/default-profile.jpg" alt="user photo">
-                </button>
-
-                <!-- Dropdown menu -->
-                <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-accent-800 dark:divide-accent-900" id="user-dropdown">
-                    <?php if (session()->has('user_first_name') && session()->has('user_email')) : ?>
-                        <div class="px-4 py-3">
-                            <span class="block text-sm dark:text-primary-100"><?= session('user_first_name') ?> <?= session('user_last_name') ?></span>
-                            <span class="block text-sm truncate dark:text-primary-200"><?= session('user_email') ?></span>
-                        </div>
-                        <form method="post" action="/logout" class="py-2" aria-labelledby="user-menu-button">
-                            <?= csrf_field() ?>
-                            <button type="submit" class="block px-4 py-2 text-sm dark:hover:bg-accent-700 dark:text-gray-200 dark:hover:text-white w-full">Sign out</button>
-                        </form>
-                    <?php else : ?>
-                        <ul class="py-2" aria-labelledby="user-menu-button">
-                            <li>
-                                <a href="#" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block px-4 py-2 text-sm dark:hover:bg-accent-700 dark:text-gray-200 dark:hover:text-white ">Login</a>
-                            </li>
-                        </ul>
-                    <?php endif; ?>
-                </div>
-
-                <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<!-- Main modal -->
-<div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        <!--Blue background -->
-        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
-        <!-- Modal content -->
-        <div class="relative rounded-lg shadow bg-primary-900">
-            <!-- Modal header -->
-            <div class="flex flex-col p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <div class="flex items-center justify-between">
-                    <button type="button" class="text-primary-100 end-2.5 bg-transparent rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-accent-900 dark:hover:text-white" data-modal-hide="authentication-modal">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <div class="flex justify-center items-center space-x-3 rtl:space-x-reverse">
-                    <img src="images/propertize-logo.png" class="h-8" alt="Propertize logo" />
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mt-4 text-center">
-                    Welcome Back!
-                </h3>
-            </div>
-            <!-- Modal body -->
-            <div class="p-4 md:p-5">
-                <form class="space-y-4" action="#">
-                    <div class="relative">
-                        <input type="email" id="hs-floating-input-passowrd" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-accent-900 dark:border-neutral-700 dark:text-primary-100 dark:focus:ring-primary-100
-                                focus:pt-6
-                                focus:pb-2
-                                [&:not(:placeholder-shown)]:pt-6
-                                [&:not(:placeholder-shown)]:pb-2
-                                autofill:pt-6
-                                autofill:pb-2" placeholder="********">
-                        <label for="hs-floating-input-passowrd" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                                peer-focus:scale-75
-                                peer-focus:translate-x-0.5
-                                peer-focus:-translate-y-1.5
-                                peer-focus:text-primary-200 dark:peer-focus:text-primary-200
-                                peer-[:not(:placeholder-shown)]:scale-75
-                                peer-[:not(:placeholder-shown)]:translate-x-0.5
-                                peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                                peer-[:not(:placeholder-shown)]:text-primary-200 dark:peer-[:not(:placeholder-shown)]:text-primary-200">
-                            Email
-                        </label>
-                    </div>
-                    <div class="relative">
-                        <input type="password" id="hs-floating-input-passowrd" class="peer p-4 block w-full border-gray-200 rounded-lg text-xl placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-accent-900 dark:border-primary-100 dark:text-primary-100 dark:focus:ring-primary-100
-                            focus:pt-6
-                            focus:pb-2
-                            [&:not(:placeholder-shown)]:pt-6
-                            [&:not(:placeholder-shown)]:pb-2
-                            autofill:pt-6
-                            autofill:pb-2" placeholder="********">
-                        <label for="hs-floating-input-passowrd" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                            peer-focus:scale-75
-                            peer-focus:translate-x-0.5
-                            peer-focus:-translate-y-1.5
-                            peer-focus:primary-200 dark:peer-focus:text-primary-200
-                            peer-[:not(:placeholder-shown)]:scale-75
-                            peer-[:not(:placeholder-shown)]:translate-x-0.5
-                            peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                            peer-[:not(:placeholder-shown)]:primary-200 dark:peer-[:not(:placeholder-shown)]:text-primary-200">
-                            Password
-                        </label>
-
-                    </div>
-                    <div class="flex justify-between">
-                        <!-- <a href="#" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Forgot Password?</a> -->
-                    </div>
-                    <button type="submit" class="w-full text-primary-900 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-500 dark:hover:bg-primary-500 dark:focus:ring-primary-500">Login to your account</button>
-                    <div class="text-sm font-medium text-gray-500 dark:text-gray-300 text-center">
-                        Don't have an account? <a href="#" class="font-bold text-primary-100 hover:underline dark:text-primary-100">Sign up</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 <main class="max-w-screen-xl mx-auto text-center px-5 mt-28">
     <section class=" bg-primary-900 ">
         <div class="mx-auto">
             <div class="relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex flex-col md:flex-row gap-5">
-                    <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="mt-48 items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden border border-accent-800 focus:outline-none focus:ring-2 focus:ring-gray-200 hover:bg-accent-700">
-                        <span class="sr-only">Open sidebar</span>
-                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd" fill-rule="evenodd" d="M3 4a1 1 0 0 1 .707-.293h12.586A1 1 0 0 1 17 4v1a1 1 0 0 1-.293.707L12 10.414V15a1 1 0 0 1-.293.707l-2 2A1 1 0 0 1 8 17v-6.586L3.293 5.707A1 1 0 0 1 3 5V4z" />
-                        </svg>
-                    </button>
                     <aside id="default-sidebar" class="fixed top-20 z-40 w-full md:w-28 md:min-w-28 md:static overflow-y-auto bg-accent-700 md:bg-primary-900" aria-label="Sidebar">
                         <button id="close-sidebar-button" class="absolute top-4 right-4  text-primary-100 hover:text-gray-300 md:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const closeSidebarButton = document.getElementById('close-sidebar-button');
+                                const sidebar = document.getElementById('default-sidebar');
+                                const accordionButtons = sidebar.querySelectorAll('[data-accordion-target]');
+
+                                function handleResize() {
+                                    if (window.innerWidth >= 768) {
+                                        sidebar.classList.remove('-translate-x-full');
+                                    }
+                                }
+
+                                closeSidebarButton.addEventListener('click', () => {
+                                    sidebar.classList.toggle('-translate-x-full');
+                                    accordionButtons.forEach(button => {
+                                        const target = document.querySelector(button.getAttribute('data-accordion-target'));
+                                        if (target) {
+                                            target.classList.add('hidden');
+                                            button.setAttribute('aria-expanded', 'false');
+                                        }
+                                    });
+                                });
+
+                                // Initial check and event listener for resizing
+                                handleResize();
+                                window.addEventListener('resize', handleResize);
+                            });
+                        </script>
+
 
                         <ul class="flex flex-col gap-5 text-primary-100 bg-accent-900 border border-accent-800 rounded-lg p-2 text-center text-xs h-[calc(100vh-9rem)]">
                             <li>
@@ -158,7 +60,7 @@ Propertize | Admin
                                             <path d="M7 17h2V7H7v10zm4 0h2V11h-2v6zm4 0h2V9h-2v8z" />
                                         </svg>
                                     </div>
-                                    <p>Summary</p>
+                                    <p class="mt-2">Summary</p>
                                 </div>
                             </li>
                             <li>
@@ -177,7 +79,7 @@ Propertize | Admin
                                             </g>
                                         </g>
                                     </svg>
-                                    <p>Properties</p>
+                                    <p class="mt-2">Properties</p>
                                 </div>
                             </li>
                             <li>
@@ -186,7 +88,15 @@ Propertize | Admin
                                         <circle cx="12" cy="8" r="4" fill="white" />
                                         <path d="M12 14c-4.418 0-8 2.686-8 6v2h16v-2c0-3.314-3.582-6-8-6z" fill="white" />
                                     </svg>
-                                    <p>Users</p>
+                                    <p class="mt-2">Users</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class=" p-3 rounded-lg cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" class="mx-auto">
+                                        <path fill="white" stroke="white" stroke-width="2" d="M2,7 L20,7 M16,2 L21,7 L16,12 M22,17 L4,17 M8,12 L3,17 L8,22" />
+                                    </svg>
+                                    <p class="mt-2">Transactions</p>
                                 </div>
                             </li>
                         </ul>
@@ -197,7 +107,8 @@ Propertize | Admin
                                 const sections = {
                                     'summary': document.getElementById('summary-content'),
                                     'properties': document.getElementById('properties-content'),
-                                    'users': document.getElementById('users-content')
+                                    'users': document.getElementById('users-content'),
+                                    'transactions': document.getElementById('transactions-content')
                                 };
 
                                 function showSection(sectionId) {
@@ -219,13 +130,15 @@ Propertize | Admin
                                             itemDiv.classList.add('bg-accent-500');
                                         } else if (index === 2 && sectionId === 'users') {
                                             itemDiv.classList.add('bg-accent-500');
+                                        } else if (index === 3 && sectionId === 'transactions') {
+                                            itemDiv.classList.add('bg-accent-500');
                                         } else {
                                             itemDiv.classList.remove('bg-accent-500');
                                         }
                                     });
                                 }
 
-                                showSection('summary'); // Initial state: show 'Summary' content and highlight its sidebar item
+                                showSection('summary');
 
                                 const sidebarItems = sidebar.querySelectorAll('ul li');
                                 sidebarItems.forEach((item, index) => {
@@ -240,6 +153,9 @@ Propertize | Admin
                                             case 2:
                                                 showSection('users');
                                                 break;
+                                            case 3:
+                                                showSection('transactions');
+                                                break;
                                             default:
                                                 break;
                                         }
@@ -250,15 +166,38 @@ Propertize | Admin
                         </script>
 
                     </aside>
+
                     <section id="summary-content" class="w-full flex flex-col gap-5">
                         <h1 class="text-primary-100 font-bold text-2xl text-left">Summary</h1>
                         <div class="flex gap-5">
                             <div class="bg-accent-900 border border-accent-800 rounded-lg text-primary-100 p-5 flex-1  shadow-custom">
-                                <p class="text-4xl font-bold mb-1">21</p>
+                                <p class="text-4xl font-bold mb-1">
+                                    <?php
+                                    $activeListingsCount = 0;
+                                    if (isset($allProperties) && !empty($allProperties)) {
+                                        foreach ($allProperties as $property) {
+                                            if ($property['status'] !== 'Sold') {
+                                                $activeListingsCount++;
+                                            }
+                                        }
+                                    }
+                                    echo $activeListingsCount;
+                                    ?></p>
                                 <p class="text-xs uppercase tracking-wider">Total Active Listings</p>
                             </div>
                             <div class="bg-accent-900 border border-accent-800 rounded-lg text-primary-100 p-5  flex-1  shadow-custom">
-                                <p class="text-4xl font-bold mb-1">15</p>
+                                <p class="text-4xl font-bold mb-1">
+                                    <?php
+                                    $soldPropertiesCount = 0;
+                                    if (isset($allProperties) && !empty($allProperties)) {
+                                        foreach ($allProperties as $property) {
+                                            if ($property['status'] === 'Sold') {
+                                                $soldPropertiesCount++;
+                                            }
+                                        }
+                                    }
+                                    echo $soldPropertiesCount;
+                                    ?></p>
                                 <p class="text-xs  uppercase  tracking-wider">Properties Sold</p>
                             </div>
                             <div class="bg-accent-900 border border-accent-800 rounded-lg text-primary-100 p-5  flex-1  shadow-custom">
@@ -267,251 +206,238 @@ Propertize | Admin
                             </div>
                         </div>
                         <h1 class="text-primary-100 font-bold text-2xl text-left mt-10">Recent Lists</h1>
-                        <div class="relative overflow-x-auto rounded-lg border border-accent-800">
-                            <table class="w-full text-sm text-left rtl:text-right  text-primary-100 rounded-lg ">
-                                <thead class="text-xs text-primary-200 uppercase bg-accent-500">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3">
-                                            ID
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Property
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Address
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Price
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-end">
-                                            Actions
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="  bg-primary-900 border-b border-b-accent-400">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            1
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            The Modern Oasis
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            General Trias Cavite
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            ₱ 3,000,000.00
-                                        </td>
-                                        <td class="px-6 py-4 flex   justify-end items-center gap-3">
-                                            <a href="#" class="underline">View</a>
-                                            <button class="bg-accent-900 border border-accent-800 rounded-lg px-5 py-2">Approve</button>
-                                            <button class="bg-primary-900 border border-accent-300 text-accent-300 rounded-lg px-6 py-2">Reject</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-primary-900 border-b border-b-accent-400">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            2
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            Sunnyside Family Home
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Dasmariñas, Cavite
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            ₱ 1, 500,000.00
-                                        </td>
-                                        <td class="px-6 py-4 flex  justify-end items-center gap-3">
-                                            <a href="#" class="underline">View</a>
-                                            <button class="bg-accent-900 border border-accent-800 rounded-lg px-5 py-2">Approve</button>
-                                            <button class="bg-primary-900 border border-accent-300 text-accent-300 rounded-lg px-6 py-2">Reject</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-primary-900 border-b-accent-400">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            3
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            Magic House
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Dasmariñas, Cavite
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            ₱ 1, 500,000.00
-                                        </td>
-                                        <td class="px-6 py-4 flex  justify-end  items-center gap-3">
-                                            <a href="#" class="underline">View</a>
-                                            <button class="bg-accent-900 border border-accent-800 rounded-lg px-5 py-2">Approve</button>
-                                            <button class="bg-primary-900 border border-accent-300 text-accent-300 rounded-lg px-6 py-2">Reject</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class=" overflow-y-auto rounded-lg border border-accent-800 ">
+                            <div class="relative overflow-x-auto ">
+                                <?php if (isset($pendingProperties) && !empty($pendingProperties)) : ?>
+                                    <table class="w-full text-sm text-left rtl:text-right text-primary-100 rounded-lg">
+                                        <thead class="text-xs text-primary-200 uppercase bg-accent-500">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3">ID</th>
+                                                <th scope="col" class="px-6 py-3">Property Name</th>
+                                                <th scope="col" class="px-6 py-3">Address</th>
+                                                <th scope="col" class="px-6 py-3">Price</th>
+                                                <th scope="col" class="px-6 py-3">Status</th>
+                                                <th scope="col" class="px-6 py-3 text-end">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            // Extract last 5 pending properties and reverse order
+                                            $lastFiveProperties = array_slice($pendingProperties, -5, 5);
+                                            $lastFiveProperties = array_reverse($lastFiveProperties);
+
+                                            foreach ($lastFiveProperties as $property) : ?>
+                                                <tr class="bg-primary-900 border-b border-b-accent-400">
+                                                    <td class="px-6 py-4"><?= $property['property_id'] ?></td>
+                                                    <td class="px-6 py-4"><?= $property['name'] ?></td>
+                                                    <td class="px-6 py-4">
+                                                        <?= $property['street'] . ', ' . $property['city'] . ', ' . $property['province'] ?>
+                                                    </td>
+                                                    <td class="px-6 py-4">₱ <?= number_format($property['price'], 2) ?></td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="px-1 py-0.5 rounded-md text-center font-medium 
+                            <?php echo match ($property['status']) {
+                                                    'for sale' => 'bg-green-500',
+                                                    'for rent' => 'bg-blue-500',
+                                                    'sold' => 'bg-red-500',
+                                                    default => '',
+                                                };
+                            ?>">
+                                                            <?= ucfirst($property['status']) ?>
+                                                        </div>
+                                                    </td>
+                                                    <td class="px-6 py-4 flex justify-end items-center gap-3">
+                                                        <a href="#" class="underline">View</a>
+                                                        <a href="#" class="bg-accent-900 border border-accent-800 rounded-lg px-5 py-2">Accept</a>
+                                                        <a href="#" class="bg-primary-900 border border-accent-300 text-accent-300 rounded-lg px-6 py-2">Reject</a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                <?php else : ?>
+                                    <p class="text-primary-100 p-5">No pending properties.</p>
+                                <?php endif; ?>
+
+                            </div>
                         </div>
                     </section>
-                    <section id="properties-content" class="hidden text-white w-full">
+
+                    <section id="properties-content" class="hidden text-white w-full pb-5">
                         <h1 class="text-primary-100 font-bold text-2xl text-left mb-5">Properties</h1>
-                        <div class="relative overflow-x-auto rounded-lg border border-accent-800">
-                            <table class="w-full text-sm text-left rtl:text-right  text-primary-100 rounded-lg ">
-                                <thead class="text-xs text-primary-200 uppercase bg-accent-500">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3">
-                                            ID
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Property
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Address
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Price
-                                        </th>
-                                        <th scope="col" class="px-6 py-3 text-end">
-                                            Actions
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="  bg-primary-900 border-b border-b-accent-400">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            1
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            The Modern Oasis
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            General Trias Cavite
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            ₱ 3,000,000.00
-                                        </td>
-                                        <td class="px-6 py-4 flex justify-end items-center gap-3">
-                                            <a href="#" class="underline">View</a>
-                                            <button class="bg-accent-900 border border-accent-800 rounded-lg px-5 py-2">Approve</button>
-                                            <button class="bg-primary-900 border border-accent-300 text-accent-300 rounded-lg px-6 py-2">Reject</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-primary-900 border-b border-b-accent-400">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            2
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            Sunnyside Family Home
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Dasmariñas, Cavite
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            ₱ 1, 500,000.00
-                                        </td>
-                                        <td class="px-6 py-4 flex justify-end items-center gap-3">
-                                            <a href="#" class="underline">View</a>
-                                            <button class="bg-accent-900 border border-accent-800 rounded-lg px-5 py-2">Approve</button>
-                                            <button class="bg-primary-900 border border-accent-300 text-accent-300 rounded-lg px-6 py-2">Reject</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-primary-900 border-b-accent-400">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            3
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            Magic House
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Dasmariñas, Cavite
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            ₱ 1, 500,000.00
-                                        </td>
-                                        <td class="px-6 py-4 flex justify-end items-center gap-3">
-                                            <a href="#" class="underline">View</a>
-                                            <button class="bg-accent-900 border border-accent-800 rounded-lg px-5 py-2">Approve</button>
-                                            <button class="bg-primary-900 border border-accent-300 text-accent-300 rounded-lg px-6 py-2">Reject</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="max-h-[78vh] overflow-y-auto rounded-lg border border-accent-800 ">
+                            <div class="relative overflow-x-auto  ">
+                                <?php if (isset($allProperties) && !empty($allProperties)) : ?>
+                                    <?php
+                                    // Sort properties array based on approval_status
+                                    usort($allProperties, function ($a, $b) {
+                                        if ($a['approval_status'] === 'pending' && $b['approval_status'] !== 'pending') {
+                                            return -1; // $a (pending) comes before $b
+                                        } elseif ($a['approval_status'] !== 'pending' && $b['approval_status'] === 'pending') {
+                                            return 1; // $b (pending) comes before $a
+                                        } else {
+                                            return 0; // Maintain current order if both are pending or neither is pending
+                                        }
+                                    });
+                                    ?>
+
+                                    <table class="w-full text-sm text-left rtl:text-right text-primary-100 rounded-lg">
+                                        <thead class="text-xs text-primary-200 uppercase bg-accent-500">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3">ID</th>
+                                                <th scope="col" class="px-6 py-3">Property Name</th>
+                                                <th scope="col" class="px-6 py-3">Address</th>
+                                                <th scope="col" class="px-6 py-3">Price</th>
+                                                <th scope="col" class="px-6 py-3">Status</th>
+                                                <th scope="col" class="px-6 py-3 text-end">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($allProperties as $property) : ?>
+                                                <tr class="bg-primary-900 border-b border-b-accent-400">
+                                                    <td class="px-6 py-4"><?= $property['property_id'] ?></td>
+                                                    <td class="px-6 py-4"><?= $property['name'] ?></td>
+                                                    <td class="px-6 py-4">
+                                                        <?= $property['street'] . ', ' . $property['city'] . ', ' . $property['province'] ?>
+                                                    </td>
+                                                    <td class="px-6 py-4">₱ <?= number_format($property['price'], 2) ?></td>
+                                                    <td class="px-6 py-4">
+                                                        <div class="px-1 py-0.5 rounded-md text-center font-medium 
+                                                            <?php echo match ($property['status']) {
+                                                                'for sale' => 'bg-green-500',
+                                                                'for rent' => 'bg-blue-500',
+                                                                'sold' => 'bg-red-500',
+                                                                default => '',
+                                                            };
+                                                            ?>">
+                                                            <?= ucfirst($property['status']) ?>
+                                                        </div>
+                                                    </td>
+                                                    <td class="px-6 py-4 flex justify-end items-center gap-3">
+                                                        <a href="#" class="underline">View</a>
+                                                        <?php if ($property['approval_status'] === 'pending') : ?>
+                                                            <!-- Accept form -->
+                                                            <form action="/admin/accept" method="post" class="inline">
+                                                                <input type="hidden" name="property_id" value="<?= $property['property_id'] ?>">
+                                                                <button type="submit" class="bg-accent-900 border border-accent-800 rounded-lg px-5 py-2">Accept</button>
+                                                            </form>
+                                                            <!-- Reject form -->
+                                                            <form action="/admin/reject" method="post" class="inline">
+                                                                <input type="hidden" name="property_id" value="<?= $property['property_id'] ?>">
+                                                                <button type="submit" class="bg-primary-900 border border-accent-300 text-accent-300 rounded-lg px-6 py-2">Reject</button>
+                                                            </form>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                <?php else : ?>
+                                    <p class="text-primary-100 p-5">No properties listed yet.</p>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </section>
+
                     <section id="users-content" class="hidden text-white w-full">
-                        <h1 class="text-primary-100 font-bold text-2xl text-left mb-5">Users</h1>
-                        <div class="relative overflow-x-auto rounded-lg border border-accent-800">
-                            <table class="w-full text-sm text-left rtl:text-right  text-primary-100 rounded-lg ">
-                                <thead class="text-xs text-primary-200 uppercase bg-accent-500">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3">
-                                            ID
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            First Name
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Last Name
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Email
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
-                                            Role
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="  bg-primary-900 border-b border-b-accent-400">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            1
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            Amiel Ian
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Mendoza
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            amiel03@gmail.com
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Admin
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-primary-900 border-b border-b-accent-400">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            2
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            Basti
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Alarcon
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            basti@gmail.com
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Buyer
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-primary-900 border-b-accent-400">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            3
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            Grace
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Hermosa
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            grace@gmail.com
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            Buyer, Seller
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="flex justify-between items-center mb-5">
+                            <h1 class="text-primary-100 font-bold text-2xl text-left">Users</h1>
+                            <?php if (session()->get('admin_role') === 'master admin') : ?>
+                                <a href="/admin/create">
+                                    <button type="submit" class="text-primary-900 font-bold rounded-lg px-10 py-3 bg-primary-500 hover:bg-accent-600 focus:shadow-outline focus:outline-none">
+                                        Create
+                                    </button>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                        <div class="max-h-[78vh] overflow-y-auto rounded-lg border border-accent-800">
+                            <div class="relative overflow-x-auto rounded-lg ">
+                                <table class="w-full text-sm text-left rtl:text-right  text-primary-100 rounded-lg ">
+                                    <thead class="text-xs text-primary-200 uppercase bg-accent-500">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3">
+                                                ID
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                First Name
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                Last Name
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                Username
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                Email
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                Role
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($users as $user) : ?>
+                                            <tr class="bg-primary-900 border-b border-b-accent-400">
+                                                <td class="px-6 py-4"><?= $user['id'] ?></td>
+                                                <td class="px-6 py-4"><?= $user['first_name'] ?></td>
+                                                <td class="px-6 py-4"><?= $user['last_name'] ?></td>
+                                                <td class="px-6 py-4"><?= $user['username'] ?></td>
+                                                <td class="px-6 py-4"><?= $user['email'] ?></td>
+                                                <td class="px-6 py-4"><?= $user['role'] ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="transactions-content" class="hidden text-white w-full">
+                        <div class="flex justify-between items-center mb-5">
+                            <h1 class="text-primary-100 font-bold text-2xl text-left">Transactions</h1>
+                            <button type="submit" class=" text-primary-900 font-bold rounded-lg px-10 py-3 bg-primary-500 hover:bg-accent-600 focus:shadow-outline focus:outline-none">
+                                Create
+                            </button>
+                        </div>
+                        <div class="max-h-[78vh] overflow-y-auto rounded-lg border border-accent-800">
+                            <div class="relative overflow-x-auto rounded-lg ">
+                                <table class="w-full text-sm text-left rtl:text-right  text-primary-100 rounded-lg ">
+                                    <thead class="text-xs text-primary-200 uppercase bg-accent-500">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3">
+                                                ID
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                First Name
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                Last Name
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                Username
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                Email
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                Role
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($users as $user) : ?>
+                                            <tr class="bg-primary-900 border-b border-b-accent-400">
+                                                <td class="px-6 py-4"><?= $user['id'] ?></td>
+                                                <td class="px-6 py-4"><?= $user['first_name'] ?></td>
+                                                <td class="px-6 py-4"><?= $user['last_name'] ?></td>
+                                                <td class="px-6 py-4"><?= $user['username'] ?></td>
+                                                <td class="px-6 py-4"><?= $user['email'] ?></td>
+                                                <td class="px-6 py-4"><?= $user['role'] ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </section>
                 </div>

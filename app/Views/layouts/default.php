@@ -15,6 +15,8 @@
 </head>
 
 <body class="bg-primary-900 font-montserrat">
+
+    <?= $this->renderSection('navbar') ?>
     <?= $this->renderSection('content') ?>
     <?= $this->renderSection('footer') ?>
 

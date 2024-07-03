@@ -14,6 +14,11 @@ class CreatePropertiesTable extends Migration
                 'null'           => false,
                 'auto_increment' => true,
             ],
+            'name' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                'null'       => false,
+            ],
             'owner_id' => [
                 'type' => 'INT',
                 'null' => false,
@@ -23,7 +28,7 @@ class CreatePropertiesTable extends Migration
                 'constraint' => 255,
                 'null'       => false,
             ],
-            'barangay' => [
+            'village' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
                 'null'       => false,
@@ -77,10 +82,6 @@ class CreatePropertiesTable extends Migration
                 'type' => 'INT',
                 'null' => false,
             ],
-            'floors' => [
-                'type' => 'INT',
-                'null' => false,
-            ],
             'year_built' => [
                 'type' => 'DATE',
                 'null' => false,
@@ -94,7 +95,22 @@ class CreatePropertiesTable extends Migration
                 'type' => 'FLOAT',
                 'null' => false,
             ],
+            'lease_term' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                'null'       => true,
+            ],
+            'utilities' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                'null'       => true,
+            ],
             'status' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                'null'       => false,
+            ],
+            'approval_status' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
                 'null'       => false,

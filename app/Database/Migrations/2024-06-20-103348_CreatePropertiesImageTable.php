@@ -19,7 +19,7 @@ class CreatePropertiesImageTable extends Migration
                 'null' => false,
             ],
             'image' => [
-                'type' => 'BLOB',
+                'type' => 'LONGBLOB',
                 'null' => true,
             ],
         ]);
@@ -31,6 +31,6 @@ class CreatePropertiesImageTable extends Migration
 
     public function down()
     {
-        //$this->forge->dropTable('properties_images', true);
+        $this->forge->dropTable('properties_images');
     }
 }

@@ -4,15 +4,15 @@
 Propertize | Admin login
 <?= $this->endSection() ?>
 
-<?= $this->section('content') ?>
 
+<?= $this->section('content') ?>
 <!-- Main modal -->
 <div id="admin-login" class="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-md max-h-full">
         <!--Blue background -->
         <div class=" bg-primary-900"></div>
         <!-- Modal content -->
-        <div class="relative rounded-lg shadow bg-accent-900 border border-accent-800">
+        <div class="relative rounded-lg bg-accent-900 border border-accent-800 shadow-custom">
             <!-- Modal header -->
             <div class="flex flex-col px-4 md:px-5 md:pt-5 pt-4 rounded-t dark:border-gray-600">
                 <div class="flex justify-center items-center space-x-3 rtl:space-x-reverse">
@@ -93,6 +93,11 @@ Propertize | Admin login
                         </svg>
                     </button>
                 </div>
+                <?php if (session('error')) : ?>
+                    <div class="alert alert-danger text-accent-300 text-center mt-4">
+                        <?= session('error') ?>
+                    </div>
+                <?php endif; ?>
                 <button type="submit" class="mt-10  py-4 w-full text-primary-900 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-500 rounded-lg text-sm px-5 text-center dark:bg-primary-500 dark:hover:bg-primary-500 dark:focus:ring-primary-500 font-bold">Login</button>
                 </form>
             </div>
