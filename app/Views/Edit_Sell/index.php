@@ -9,9 +9,9 @@ Propertize | List Property
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<?= form_open('/rent-list', 'method="post" enctype="multipart/form-data"'); ?>
+<?= form_open('/update-sell/' . $property['property_id'], 'method="post" enctype="multipart/form-data"'); ?>
 <section class="max-w-screen-xl mx-auto px-4">
-    <h1 class="font-bold mt-28 text-2xl text-primary-100">Manage rent a Property</h1>
+    <h1 class="font-bold mt-28 text-2xl text-primary-100">Update a Property</h1>
     <hr class="border-t-accent-800 mt-4">
     <div>
         <h2 class="text-primary-100 font-bold text-xl mt-10 mb-4">Address</h2>
@@ -23,7 +23,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['street'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder=" ********">
                     <label for="street" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -42,7 +42,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['street'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********">
                     <label for="village" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -61,7 +61,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['city'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********">
                     <label for="city" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -80,7 +80,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['province'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********">
                     <label for="province" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -99,7 +99,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['postal_code'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********">
                     <label for="postal-code" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -118,7 +118,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['country'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********">
                     <label for="country" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -131,7 +131,7 @@ Propertize | List Property
                     </label>
                 </div>
                 <div class="relative w-full min-w-[280px]">
-                    <input type="text" id="landmark" name="landmark" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent  disabled:opacity-50 disabled:pointer-events-none dark:bg-accent-900 dark:border-neutral-700 dark:text-primary-100 dark:focus:ring-primary-100
+                    <input type="text" id="landmark" value="<?= htmlspecialchars($property['landmark'], ENT_QUOTES, 'UTF-8'); ?>" name="landmark" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent  disabled:opacity-50 disabled:pointer-events-none dark:bg-accent-900 dark:border-neutral-700 dark:text-primary-100 dark:focus:ring-primary-100
                                                 focus:pt-6
                                                 focus:pb-2
                                                 [&:not(:placeholder-shown)]:pt-6
@@ -187,9 +187,36 @@ Propertize | List Property
                         Property photos
                     </h1>
                     <ul id="gallery" class="flex flex-1 flex-wrap -m-1">
-                        <li id="empty" class="w-full text-center flex flex-col justify-center items-center">
-                            <span class="text-small text-primary-100">No files selected</span>
-                        </li>
+                        <?php if (empty($property['images'])) : ?>
+                            <li id="empty" class="w-full text-center flex flex-col justify-center items-center">
+                                <span class="text-small text-primary-100">No files selected</span>
+                            </li>
+                        <?php else : ?>
+                            <?php foreach ($property['images'] as $image) : ?>
+                                <li class="block p-1 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 h-24">
+                                    <article tabindex="0" class="group hasImage w-full h-full rounded-md focus:outline-none focus:shadow-outline bg-gray-100 cursor-pointer relative text-transparent hover:text-white shadow-sm">
+                                        <img class="img-preview w-full h-full sticky object-cover rounded-md bg-fixed" src="data:image/jpeg;base64,<?= $image['image']; ?>" />
+                                        <section class="flex flex-col rounded-md text-xs break-words w-full h-full z-20 absolute top-0 py-2 px-3">
+
+                                            <div class="flex">
+                                                <span class="p-1">
+                                                    <i>
+                                                        <svg class="fill-current w-4 h-4 ml-auto pt-" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                                            <path d="M5 8.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5zm9 .5l-2.519 4-2.481-1.96-4 5.96h14l-5-8zm8-4v14h-20v-14h20zm2-2h-24v18h24v-18z" />
+                                                        </svg>
+                                                    </i>
+                                                </span>
+                                                <button type="button" class="delete ml-auto focus:outline-none hover:bg-gray-300 p-1 rounded-md">
+                                                    <svg class="pointer-events-none fill-current w-4 h-4 ml-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                                        <path class="pointer-events-none" d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </section>
+                                    </article>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </ul>
                 </section>
             </article>
@@ -271,7 +298,8 @@ Propertize | List Property
                 fileTempl.content.cloneNode(true);
 
             clone.querySelector("h1").textContent = file.name;
-            clone.querySelector("li").id = objectURL;
+            const liElement = clone.querySelector("li");
+            liElement.id = objectURL;
             clone.querySelector(".delete").dataset.target = objectURL;
             clone.querySelector(".size").textContent =
                 file.size > 1024 ?
@@ -291,6 +319,7 @@ Propertize | List Property
 
             FILES[objectURL] = file;
         }
+
 
         const gallery = document.getElementById("gallery"),
             overlay = document.getElementById("overlay");
@@ -347,18 +376,20 @@ Propertize | List Property
             }
         }
 
-        // event delegation to caputre delete events
-        // fron the waste buckets in the file preview cards
         gallery.onclick = ({
             target
         }) => {
             if (target.classList.contains("delete")) {
                 const ou = target.dataset.target;
-                document.getElementById(ou).remove(ou);
-                gallery.children.length === 1 && empty.classList.remove("hidden");
-                delete FILES[ou];
+                const element = document.getElementById(ou);
+                if (element) {
+                    element.remove();
+                    gallery.children.length === 1 && empty.classList.remove("hidden");
+                    delete FILES[ou];
+                }
             }
         };
+
 
         // print all selected files
         document.getElementById("submit").onclick = () => {
@@ -407,6 +438,7 @@ Propertize | List Property
     <hr class="border-t-accent-800 mt-10">
 </section>
 
+
 <section class="max-w-screen-xl mx-auto px-4">
     <div>
         <h2 class="text-primary-100 font-bold text-xl mt-10 mb-4">Home Information</h2>
@@ -432,7 +464,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['name'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********">
                         <label for="property-name" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -451,7 +483,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['lot_size'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********">
                         <label for="lot-size" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -470,7 +502,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['floor_area'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********">
                         <label for="floor-area" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -491,7 +523,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********">
+                                                autofill:pb-2" value="<?= htmlspecialchars(substr($property['year_built'], 0, 4), ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********">
                         <label for="year-built" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -510,7 +542,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********" value="0">
+                                                autofill:pb-2" required value="<?= htmlspecialchars($property['no_of_beds'], ENT_QUOTES, 'UTF-8'); ?>" placeholder="********" value="0">
                         <label for="beds" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -529,7 +561,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********" value="0">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['no_of_bathrooms'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********" value="0">
                         <label for="bathrooms" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -548,7 +580,7 @@ Propertize | List Property
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" required placeholder="********" value="0">
+                                                autofill:pb-2" value="<?= htmlspecialchars($property['no_of_parkings'], ENT_QUOTES, 'UTF-8'); ?>" required placeholder="********" value="0">
                         <label for="parkings" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75 peer-focus:translate-x-0.5
                                                 peer-focus:-translate-y-1.5
@@ -564,117 +596,13 @@ Propertize | List Property
             </div>
             <div class="w-full">
                 <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Additional Description</label>
-                <textarea id="message" name="description" rows="11" class="block resize-none p-2.5 w-full text-sm text-primary-100 bg-gray-50 rounded-lg dark:bg-accent-900  dark:placeholder-accent-800" placeholder="Additional description..."></textarea>
+                <textarea id="message" name="description" rows="11" class="block resize-none p-2.5 w-full text-sm text-primary-100 bg-gray-50 rounded-lg dark:bg-accent-900  dark:placeholder-accent-800" placeholder="Additional description..."><?= htmlspecialchars($property['description'], ENT_QUOTES, 'UTF-8'); ?></textarea>
             </div>
         </div>
     </div>
     <hr class="border-t-accent-800 mt-10">
 </section>
 <section class="max-w-screen-xl mx-auto px-4">
-    <h1 class="font-bold mt-10 text-2xl text-primary-100 mb-5">Rental Information</h1>
-    <div class="flex flex-col md:flex-row gap-5">
-        <div class="w-full">
-            <div class="relative w-full mb-5">
-                <input type="number" id="php-price" name="price" step="0.01" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent  disabled:opacity-50 disabled:pointer-events-none dark:bg-accent-900 dark:border-neutral-700 dark:text-primary-100 focus:ring-white
-                                                        focus:pt-6
-                                                        focus:pb-2
-                                                        [&:not(:placeholder-shown)]:pt-6
-                                                        [&:not(:placeholder-shown)]:pb-2
-                                                        autofill:pt-6
-                                                        autofill:pb-2" required placeholder="********">
-                <label for="php-price" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                                                        peer-focus:scale-75 peer-focus:translate-x-0.5
-                                                        peer-focus:-translate-y-1.5
-                                                        peer-focus:text-primary-200 dark:peer-focus:text-primary-200
-                                                        peer-[:not(:placeholder-shown)]:scale-75
-                                                        peer-[:not(:placeholder-shown)]:translate-x-0.5
-                                                        peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                                                        peer-[:not(:placeholder-shown)]:text-primary-200 dark:peer-[:not(:placeholder-shown)]:text-primary-200">
-                    Monthly price
-                </label>
-            </div>
-            <div class="w-full flex-1 min-w-32">
-                <select id="lease-term" name="lease_term" class="p-4 text-gray-900 text-sm rounded-lg block w-full dark:bg-accent-900 dark:placeholder-primary-800 dark:text-white">
-                    <option class="hidden" selected disabled>Lease Term</option>
-                    <option value="6_months">6 Months</option>
-                    <option value="9_months">9 Months</option>
-                    <option value="12_months">12 Months</option>
-                    <option value="18_months">18 Months</option>
-                    <option value="24_months">24 Months</option>
-                    <option value="month_to_month">Month-to-Month</option>
-                    <option value="other">Other (Specify)</option>
-                </select>
-                <div id="custom-lease-term" class="relative hidden mt-4">
-                    <input type="number" id="custom-lease-term-input" name="custom_lease_term" class="peer p-4 w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent  disabled:opacity-50 disabled:pointer-events-none dark:bg-accent-900 dark:border-neutral-700 dark:text-primary-100 focus:ring-white
-                                                    focus:pt-6
-                                                    focus:pb-2
-                                                    [&:not(:placeholder-shown)]:pt-6
-                                                    [&:not(:placeholder-shown)]:pb-2
-                                                    autofill:pt-6
-                                                    autofill:pb-2" placeholder="********">
-                    <label for="custom-lease-term-input" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                                                    peer-focus:scale-75 peer-focus:translate-x-0.5
-                                                    peer-focus:-translate-y-1.5
-                                                    peer-focus:text-primary-200 dark:peer-focus:text-primary-200
-                                                    peer-[:not(:placeholder-shown)]:scale-75
-                                                    peer-[:not(:placeholder-shown)]:translate-x-0.5
-                                                    peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                                                    peer-[:not(:placeholder-shown)]:text-primary-200 dark:peer-[:not(:placeholder-shown)]:text-primary-200">
-                        Other lease term
-                    </label>
-                </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const leaseTermSelect = document.getElementById('lease-term');
-                        const customLeaseTermDiv = document.getElementById('custom-lease-term');
-                        const customLeaseTermInput = document.getElementById('custom-lease-term-input');
-
-                        leaseTermSelect.addEventListener('change', function() {
-                            if (leaseTermSelect.value === 'other') {
-                                customLeaseTermDiv.classList.remove('hidden');
-                                customLeaseTermInput.setAttribute('required', 'true');
-                            } else {
-                                customLeaseTermDiv.classList.add('hidden');
-                                customLeaseTermInput.removeAttribute('required');
-                            }
-                        });
-
-                        document.querySelector('form').addEventListener('submit', function(event) {
-                            if (leaseTermSelect.value === 'other' && customLeaseTermInput.value === '') {
-                                customLeaseTermInput.focus();
-                                event.preventDefault();
-                            }
-                        });
-                    });
-                </script>
-
-            </div>
-        </div>
-        <div class="w-full">
-            <p class="text-primary-100 mb-3">Utilities Included</p>
-            <div class="flex justify-start gap-10 w-full">
-                <div class="flex items-center mb-4">
-                    <input id="utilities-water" type="checkbox" value="water" name="utilities[]" class="w-4 h-4 border-gray-300 rounded">
-                    <label for="utilities-water" class="ms-2 text-sm font-medium text-primary-100">Water</label>
-                </div>
-                <div class="flex items-center mb-4">
-                    <input id="utilities-gas" type="checkbox" value="gas" name="utilities[]" class="w-4 h-4 border-gray-300 rounded">
-                    <label for="utilities-gas" class="ms-2 text-sm font-medium text-primary-100 ">Gas</label>
-                </div>
-                <div class="flex items-center mb-4">
-                    <input id="utilities-electricity" type="checkbox" value="electricity" name="utilities[]" class="w-4 h-4 border-gray-300 rounded">
-                    <label for="utilities-electricity" class="ms-2 text-sm font-medium text-primary-100 ">Electricity</label>
-                </div>
-                <div class="flex items-center mb-4">
-                    <input id="utilities-internet" type="checkbox" value="internet" name="utilities[]" class="w-4 h-4 border-gray-300 rounded">
-                    <label for="utilities-internet" class="ms-2 text-sm font-medium text-primary-100 ">Internet</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr class="border-t-accent-800 mt-10">
-</section>
-<!-- <section class="max-w-screen-xl mx-auto px-4">
     <h1 class="font-bold mt-10 text-2xl text-primary-100 mb-5">Set your price</h1>
     <div class="flex flex-col md:flex-row gap-5">
         <div class="relative w-1/2">
@@ -684,7 +612,7 @@ Propertize | List Property
                                                     [&:not(:placeholder-shown)]:pt-6
                                                     [&:not(:placeholder-shown)]:pb-2
                                                     autofill:pt-6
-                                                    autofill:pb-2" required placeholder="********">
+                                                    autofill:pb-2" value="<?= htmlspecialchars($property['price'], ENT_QUOTES, 'UTF-8'); ?>" required step="0.01" placeholder="********">
             <label for="php-price" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                     peer-focus:scale-75 peer-focus:translate-x-0.5
                                                     peer-focus:-translate-y-1.5
@@ -698,7 +626,7 @@ Propertize | List Property
         </div>
     </div>
     <hr class="border-t-accent-800 mt-10">
-</section> -->
+</section>
 <!-- <section class="max-w-screen-xl mx-auto px-4">
     <h1 class="font-bold mt-10 text-2xl text-primary-100 mb-5">Payment methods</h1>
     <div class="flex flex-col md:flex-row gap-5">
@@ -819,14 +747,14 @@ Propertize | List Property
     });
 </script> -->
 <div>
-    <input type="hidden" name="status" value="for rent">
+    <input type="hidden" name="status" value="for sale">
 </div>
 <div>
     <input type="hidden" name="approval_status" value="pending">
 </div>
 <section class="max-w-screen-xl mx-auto px-4 mt-10">
     <button type="submit" class="font-bold mt-2 rounded-lg px-10 py-3 bg-primary-500 hover:bg-accent-600 focus:shadow-outline focus:outline-none">
-        List property
+        Update
     </button>
 </section>
 </form>

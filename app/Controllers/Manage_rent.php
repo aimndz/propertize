@@ -5,13 +5,42 @@ namespace App\Controllers;
 
 use App\Models\PropertiesModel;
 use App\Models\PropertiesImagesModel;
+use App\Models\UsersModel;
 
 class Manage_rent extends BaseController
 {
     public function index(): string
     {
-        return view('Manage_rent/index');
+        $session = session();
+        $userRole = $session->get('user_role');
+
+        $data = [
+            'showLandlordModal' => !str_contains($userRole, 'landlord')
+        ];
+
+        return view('Manage_rent/index', $data);
     }
+
+    public function update_landlord_role()
+    {
+        $session = session();
+        $userId = $session->get('user_id');
+
+        $usersModel = new UsersModel();
+        $user = $usersModel->find($userId);
+
+        $currentRoles = $user['role'];
+
+        if (!str_contains($currentRoles, 'landlord')) {
+            $updatedRoles = $currentRoles . ',landlord';
+            $usersModel->update($userId, ['role' => $updatedRoles]);
+
+            $session->set('user_role', $updatedRoles);
+        }
+
+        return redirect()->to('/list-rent');
+    }
+
 
     public function list()
     {
@@ -23,7 +52,7 @@ class Manage_rent extends BaseController
             'street', 'village', 'city', 'province', 'country', 'postal_code',
             'landmark', 'type', 'name', 'lot_size', 'floor_area',
             'year_built', 'no_of_beds', 'no_of_bathrooms', 'no_of_parkings',
-            'lease_term', 'description', 'utilities', 'price', 'status', 'custom_lease_term'
+            'lease_term', 'description', 'utilities', 'price', 'status', 'custom_lease_term', 'approval_status'
         ]);
 
         if (isset($propertyData['utilities']) && is_array($propertyData['utilities'])) {

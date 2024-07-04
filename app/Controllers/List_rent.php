@@ -23,7 +23,7 @@ class List_rent extends BaseController
             'street', 'village', 'city', 'province', 'country', 'postal_code',
             'landmark', 'type', 'name', 'lot_size', 'floor_area',
             'year_built', 'no_of_beds', 'no_of_bathrooms', 'no_of_parkings',
-            'lease_term', 'description', 'utilities', 'price', 'status', 'custom_lease_term'
+            'lease_term', 'description', 'utilities', 'price', 'status', 'custom_lease_term', 'approval_status'
         ]);
 
         if (isset($propertyData['utilities']) && is_array($propertyData['utilities'])) {
@@ -41,6 +41,8 @@ class List_rent extends BaseController
             $propertyData['lease_term'] = $propertyData['custom_lease_term'];
             unset($propertyData['custom_lease_term']); // Remove the custom term from the array
         }
+
+        dd($propertyData);
 
         // Remove unnecessary field if not needed
         unset($propertyData['custom_lease_term']);

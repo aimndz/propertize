@@ -45,6 +45,11 @@ class CreateUsersTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 50,
             ],
+            'contact_number' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 20,
+                'null'       => true,
+            ],
             'deleted_at' => [
                 'type' => 'DATETIME',
                 'null' => true,

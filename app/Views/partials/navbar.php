@@ -15,13 +15,14 @@
                     <?php if (session()->has('user_first_name') && session()->has('user_email')) :
                     ?>
                         <div class="px-4 py-3 border-b border-b-primary-200">
-                            <span class="block text-sm dark:text-primary-100"><?= session('user_first_name') ?> <?= session('user_last_name') ?></span>
+                            <span class="block text-sm dark:text-primary-100 text-center"><?= session('user_first_name') ?> <?= session('user_last_name') ?></span>
+                            <span class="block text-sm dark:text-primary-200 text-center">UID: <?= session('user_id') ?></span>
                             <span class="block text-sm truncate dark:text-primary-200"><?= session('user_email') ?></span>
                         </div>
 
                         <?php
                         $userRole = session('user_role');
-                        if (stripos($userRole, 'seller') !== false) :
+                        if (stripos($userRole, 'seller') !== false || stripos($userRole, 'landlord') !== false) :
                         ?>
                             <a href="/dashboard" class="block text-center px-4 py-2 text-sm dark:hover:bg-accent-700 dark:text-gray-200 dark:hover:text-white w-full">Dashboard</a>
                         <?php endif; ?>
@@ -204,8 +205,7 @@
                                                 [&:not(:placeholder-shown)]:pt-6
                                                 [&:not(:placeholder-shown)]:pb-2
                                                 autofill:pt-6
-                                                autofill:pb-2" placeholder="********">
-                            <div class="alert alert-danger text-accent-300 hidden text-sm  ml-3 mt-3" role="alert"></div>
+                                                autofill:pb-2" required placeholder="********">
                             <label for="sign-up-first-name" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                                 peer-focus:scale-75
                                                 peer-focus:translate-x-0.5
@@ -227,8 +227,7 @@
                                             [&:not(:placeholder-shown)]:pt-6
                                             [&:not(:placeholder-shown)]:pb-2
                                             autofill:pt-6
-                                            autofill:pb-2" placeholder="********">
-                        <div class="alert alert-danger text-accent-300 hidden text-sm  ml-3 mt-3" role="alert"></div>
+                                            autofill:pb-2" required placeholder="********">
                         <label for="sign-up-last-name" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                             peer-focus:scale-75
                                             peer-focus:translate-x-0.5
@@ -248,8 +247,7 @@
                                             [&:not(:placeholder-shown)]:pt-6
                                             [&:not(:placeholder-shown)]:pb-2
                                             autofill:pt-6
-                                            autofill:pb-2" placeholder="********">
-                        <div class="alert alert-danger text-accent-300 hidden text-sm  ml-3 mt-3" role="alert"></div>
+                                            autofill:pb-2" required placeholder="********">
                         <label for="sign-up-user-name" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                             peer-focus:scale-75
                                             peer-focus:translate-x-0.5
@@ -269,8 +267,7 @@
                                             [&:not(:placeholder-shown)]:pt-6
                                             [&:not(:placeholder-shown)]:pb-2
                                             autofill:pt-6
-                                            autofill:pb-2" placeholder="********">
-                        <div class="alert alert-danger text-accent-300 hidden text-sm  ml-3 mt-3" role="alert"></div>
+                                            autofill:pb-2" required placeholder="********">
                         <label for="sign-up-email" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                                             peer-focus:scale-75
                                             peer-focus:translate-x-0.5
@@ -282,7 +279,6 @@
                                             peer-[:not(:placeholder-shown)]:text-primary-200 dark:peer-[:not(:placeholder-shown)]:text-primary-200">
                             Email
                         </label>
-                        <div class="alert alert-danger text-accent-300 hidden text-sm  ml-3 mt-3" role="alert"></div>
                     </div>
                     <div class="relative">
                         <button type="button" class="absolute togglePasswordButton top-7 end-4 -translate-y-1/2 transform focus:outline-none hover:text-primary-200 dark:hover:text-primary-200 aria-label='Toggle Password Visibility'">
@@ -302,8 +298,7 @@
                                             [&:not(:placeholder-shown)]:pt-6
                                             [&:not(:placeholder-shown)]:pb-2
                                             autofill:pt-6
-                                            autofill:pb-2" placeholder="********">
-                        <div class="alert alert-danger text-accent-300 hidden text-sm  ml-3 mt-3" role="alert"></div>
+                                            autofill:pb-2" required placeholder="********">
                         <label for="sign-up-password" class="
                                             absolute
                                             top-0
@@ -348,14 +343,14 @@
                                 <line x1="2" y1="2" x2="18" y2="18" stroke="#606060" stroke-width="2" />
                             </svg>
                         </button>
-                        <input type="password" id="sign-up-confirm-password" name="confirm-password" class="passwordInput peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent  disabled:opacity-50 disabled:pointer-events-none dark:bg-accent-900 dark:border-neutral-700 dark:text-primary-100 dark:focus:ring-primary-100
+                        <input type="password" id="sign-up-confirm-password" name="confirm_password" class="passwordInput peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent  disabled:opacity-50 disabled:pointer-events-none dark:bg-accent-900 dark:border-neutral-700 dark:text-primary-100 dark:focus:ring-primary-100
                                             focus:pt-6
                                             focus:pb-2
                                             [&:not(:placeholder-shown)]:pt-6
                                             [&:not(:placeholder-shown)]:pb-2
                                             autofill:pt-6
                                             autofill:pb-2" placeholder="********">
-                        <div class="alert alert-danger text-accent-300 hidden text-sm  ml-3 mt-3" role="alert"></div>
+
                         <label for="sign-up-confirm-password" class="
                                             absolute
                                             top-0
@@ -391,6 +386,7 @@
                     <div>
                         <input type="hidden" name="role" value="buyer">
                     </div>
+                    <div class="alert alert-danger text-accent-300 hidden text-sm  ml-3 mt-3" role="alert"></div>
                     <div class="flex justify-between">
                         <!-- <a href="#" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Forgot Password?</a> -->
                     </div>
@@ -410,39 +406,59 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const loginForm = document.querySelector('#authentication-modal form');
+        const signupForm = document.querySelector('#modal-sign-up form');
         const loginButton = loginForm.querySelector('button[type="submit"]');
-        const errorContainer = loginForm.querySelector('.alert-danger');
-        const usernameField = loginForm.querySelector('input[name="username"]');
-        const passwordField = loginForm.querySelector('input[name="password"]');
-        const loginCloseBtn = document.querySelector('#login-close-btn');
-        const modal = document.querySelector('#authentication-modal');
+        const signupButton = signupForm.querySelector('button[type="submit"]');
+        const loginErrorContainer = loginForm.querySelector('.alert-danger');
+        const signupErrorContainer = signupForm.querySelector('.alert-danger');
+        const loginUsernameField = loginForm.querySelector('input[name="username"]');
+        const loginPasswordField = loginForm.querySelector('input[name="password"]');
+        const signupUsernameField = signupForm.querySelector('input[name="username"]');
+        const signupPasswordField = signupForm.querySelector('input[name="password"]');
+        const signupConfirmPasswordField = signupForm.querySelector('input[name="confirm_password"]');
+        const signupCloseBtn = document.querySelector('#modal-sign-up button[data-modal-hide="modal-sign-up"]');
+        const loginCloseBtn = document.querySelector('#authentication-modal button[data-modal-hide="authentication-modal"]');
+        const signupModal = document.querySelector('#modal-sign-up');
+        const signupFirstNameField = signupForm.querySelector('input[name="first_name"]');
+        const signupLastNameField = signupForm.querySelector('input[name="last_name"]');
+        const signupEmailField = signupForm.querySelector('input[name="email"]');
 
-        function clearError() {
+        function clearError(errorContainer) {
             if (errorContainer) {
                 errorContainer.classList.add('hidden');
                 errorContainer.textContent = '';
             }
         }
 
-        function clearForm() {
-            clearError();
-            usernameField.value = '';
-            passwordField.value = '';
+        function clearLoginForm() {
+            clearError(loginErrorContainer);
+            loginUsernameField.value = '';
+            loginPasswordField.value = '';
+        }
+
+        function clearSignupForm() {
+            clearError(signupErrorContainer);
+            signupEmailField.value = '';
+            signupFirstNameField.value = '';
+            signupLastNameField.value = '';
+            signupUsernameField.value = '';
+            signupPasswordField.value = '';
+            signupConfirmPasswordField.value = '';
         }
 
         loginForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            clearError();
+            clearError(loginErrorContainer);
 
             // Validate input fields
-            const username = usernameField.value.trim();
-            const password = passwordField.value.trim();
+            const username = loginUsernameField.value.trim();
+            const password = loginPasswordField.value.trim();
 
             if (!username || !password) {
-                if (errorContainer) {
-                    errorContainer.textContent = 'Please enter both username and password.';
-                    errorContainer.classList.remove('hidden');
+                if (loginErrorContainer) {
+                    loginErrorContainer.textContent = 'Please enter both username and password.';
+                    loginErrorContainer.classList.remove('hidden');
                 }
                 return;
             }
@@ -457,9 +473,58 @@
                     if (data.success) {
                         window.location.href = data.redirect;
                     } else {
-                        if (errorContainer) { // Check if the error container exists
-                            errorContainer.textContent = data.message;
-                            errorContainer.classList.remove('hidden');
+                        if (loginErrorContainer) { // Check if the error container exists
+                            loginErrorContainer.textContent = data.message;
+                            loginErrorContainer.classList.remove('hidden');
+                        } else {
+                            console.error("Error container not found:", data.message); // Log if not found
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error("Error occurred:", error);
+                });
+        });
+
+        signupForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            clearError(signupErrorContainer);
+
+            // Validate input fields
+            const username = signupUsernameField.value.trim();
+            const password = signupPasswordField.value.trim();
+            const confirmPassword = signupConfirmPasswordField.value.trim();
+
+            if (!username || !password || !confirmPassword) {
+                if (signupErrorContainer) {
+                    signupErrorContainer.textContent = 'Please fill in all fields.';
+                    signupErrorContainer.classList.remove('hidden');
+                }
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                if (signupErrorContainer) {
+                    signupErrorContainer.textContent = 'Password and confirm password do not match.';
+                    signupErrorContainer.classList.remove('hidden');
+                }
+                return;
+            }
+
+            // Proceed with form submission
+            fetch('/create', {
+                    method: 'POST',
+                    body: new FormData(signupForm)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = data.redirect;
+                    } else {
+                        if (signupErrorContainer) { // Check if the error container exists
+                            signupErrorContainer.textContent = data.message;
+                            signupErrorContainer.classList.remove('hidden');
                         } else {
                             console.error("Error container not found:", data.message); // Log if not found
                         }
@@ -472,108 +537,24 @@
 
         // Add event listener to clear error message and form fields when the modal close button is clicked
         if (loginCloseBtn) {
-            loginCloseBtn.addEventListener('click', clearForm);
+            loginCloseBtn.addEventListener('click', clearLoginForm);
+        }
+
+        if (signupCloseBtn) {
+            signupCloseBtn.addEventListener('click', clearSignupForm);
         }
 
         // Add event listeners to clear error message when input fields are modified
-        [usernameField, passwordField].forEach(field => {
-            field.addEventListener('input', clearError);
-        });
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('#modal-sign-up form');
-        const inputs = form.querySelectorAll('input');
-
-        function clearSignUpForm() {
-            inputs.forEach(input => {
-                input.value = "";
-            });
-        }
-
-        // Function to validate input
-        function validateInput(input, messageElement) {
-            const inputValue = input.value.trim();
-
-            // Example validation: Check if input is empty
-            if (inputValue === '') {
-                messageElement.textContent = 'This field is required.';
-                messageElement.classList.remove('hidden');
-            } else {
-                messageElement.classList.add('hidden');
-
-                // Validation based on input id
-                switch (input.id) {
-                    case 'sign-up-user-name':
-                        // Validate first name and last name length
-                        if (inputValue.length < 8 || inputValue.length > 24) {
-                            messageElement.textContent = 'Must be between 8 and 24 characters.';
-                            messageElement.classList.remove('hidden');
-                        }
-                        break;
-                    case 'sign-up-email':
-                        // Validate email format
-                        if (!isValidEmail(inputValue)) {
-                            messageElement.textContent = 'Enter a valid email address.';
-                            messageElement.classList.remove('hidden');
-                        }
-                        break;
-                    case 'sign-up-password':
-                        // Validate password strength
-                        if (!isValidPassword(inputValue)) {
-                            messageElement.textContent = 'Password must be at least 8 characters long and contain at least one uppercase letter, one number, and one special character.';
-                            messageElement.classList.remove('hidden');
-                        }
-                        break;
-                    case 'sign-up-confirm-password':
-                        // Validate confirm password matches password
-                        const passwordInput = document.querySelector('#sign-up-password');
-                        if (inputValue !== passwordInput.value.trim()) {
-                            messageElement.textContent = 'Passwords do not match.';
-                            messageElement.classList.remove('hidden');
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        // Email validation helper function
-        function isValidEmail(email) {
-            // Basic email format validation using regex
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        // Password validation helper function
-        function isValidPassword(password) {
-            // Password must be at least 8 characters long and contain at least one uppercase letter, one number, and one special character
-            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            return passwordRegex.test(password);
-        }
-
-        // Add event listeners to inputs
-        inputs.forEach(input => {
-            const messageElement = input.nextElementSibling;
-
-            input.addEventListener('input', function() {
-                validateInput(this, messageElement);
+        [loginUsernameField, loginPasswordField].forEach(field => {
+            field.addEventListener('input', function() {
+                clearError(loginErrorContainer);
             });
         });
 
-        // Form submission validation
-        form.addEventListener('submit', function(event) {
-            inputs.forEach(input => {
-                const messageElement = input.nextElementSibling;
-                validateInput(input, messageElement);
+        [signupUsernameField, signupPasswordField, signupConfirmPasswordField].forEach(field => {
+            field.addEventListener('input', function() {
+                clearError(signupErrorContainer);
             });
-
-            const hasErrors = form.querySelector('.alert.alert-danger:not(.hidden)');
-            // if (hasErrors) {
-
-            // }
-            event.preventDefault();
         });
     });
 </script>

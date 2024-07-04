@@ -35,11 +35,13 @@ Propertize | Sell
                     <p class="text-primary-100 text-center mb-4">Are you interested in becoming a seller and having your own seller dashboard?</p>
 
                     <div class="flex justify-center gap-1">
-                        <form action="/update-role" method="post" data-modal-hide="seller-modal">
+
+                        <a href="mode-of-payment">
                             <button id="becomeSellerBtn" type="submit" class="text-primary-900 bg-primary-500 hover:bg-accent-600 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                 Yes, I'm in!
                             </button>
-                        </form>
+                        </a>
+
                         <button data-modal-hide="seller-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-white focus:outline-none bg-accent-700 rounded-lg border border-accent-800">No, thanks</button>
                     </div>
                 </div>

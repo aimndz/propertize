@@ -45,8 +45,12 @@ class Buy extends BaseController
         $minYearBuilt = $this->request->getGet('filter-min-year-built');
         $maxYearBuilt = $this->request->getGet('filter-max-year-built');
 
-        // Base query with status filter
-        $query = $propertiesModel->where('approval_status', 'accepted');
+        // Base query with status filter and tenant, transfer_to condition
+        $query = $propertiesModel
+            ->where('approval_status', 'accepted')
+            ->where('tenant', null)
+            ->where('transfer_to', null);
+
 
         // Status filter
         if (!empty($propertyStatus)) {
@@ -181,6 +185,7 @@ class Buy extends BaseController
 
         return view('Buy/index', $data);
     }
+
 
     public function get_property_details($property_id)
     {

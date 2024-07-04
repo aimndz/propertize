@@ -237,7 +237,7 @@ Propertize | Admin
                                                     <td class="px-6 py-4">
                                                         <div class="px-1 py-0.5 rounded-md text-center font-medium 
                             <?php echo match ($property['status']) {
-                                                    'for sale' => 'bg-green-500',
+                                                    'for sale' => 'bg-green-600',
                                                     'for rent' => 'bg-blue-500',
                                                     'sold' => 'bg-red-500',
                                                     default => '',
@@ -304,7 +304,7 @@ Propertize | Admin
                                                     <td class="px-6 py-4">
                                                         <div class="px-1 py-0.5 rounded-md text-center font-medium 
                                                             <?php echo match ($property['status']) {
-                                                                'for sale' => 'bg-green-500',
+                                                                'for sale' => 'bg-green-600',
                                                                 'for rent' => 'bg-blue-500',
                                                                 'sold' => 'bg-red-500',
                                                                 default => '',

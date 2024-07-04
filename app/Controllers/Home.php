@@ -3,13 +3,16 @@
 namespace App\Controllers;
 
 use App\Models\UsersModel;
+use App\Models\PaymentTrackingModel;
 
 class Home extends BaseController
 {
     public function index(): string
     {
-        // $db = \Config\Database::connect();
-        // $db->table('properties')->emptyTable();
+
+        // $paymentTrackingModel = new PaymentTrackingModel();
+        // $paymentTrackingModel->truncate();
+        // $paymentTrackingModel->query('ALTER TABLE payment_tracking AUTO_INCREMENT = 1');
 
         return view('Home/index');
     }
@@ -20,26 +23,35 @@ class Home extends BaseController
 
         // Get post data
         $userData = $this->request->getPost([
-            'first_name', 'last_name', 'username', 'password', 'email', 'role'
+            'first_name', 'last_name', 'username', 'password', 'confirm_password', 'email', 'role'
         ]);
+
+        // Check if password and confirm password match
+        if ($userData['password'] !== $userData['confirm_password']) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Confirm password does not match']);
+        }
 
         // Hash password
         $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);
 
+        // Remove confirm_password from user data
+        unset($userData['confirm_password']);
+
         // Check if username or email already exists
         if ($model->where('username', $userData['username'])->first() !== null) {
-            return redirect()->to('/')->with('error', 'Username already exists.');
+            return $this->response->setJSON(['success' => false, 'message' => 'Username already exists']);
         }
 
         if ($model->where('email', $userData['email'])->first() !== null) {
-            return redirect()->to('/')->with('error', 'Email already exists.');
+            return $this->response->setJSON(['success' => false, 'message' => 'Email already exists']);
         }
 
         // Insert user data if no duplicates found
         $model->insert($userData);
 
-        return redirect()->to('/');
+        return $this->response->setJSON(['success' => true, 'redirect' => '/']);
     }
+
 
 
     public function login()

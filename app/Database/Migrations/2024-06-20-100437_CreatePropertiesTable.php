@@ -105,6 +105,10 @@ class CreatePropertiesTable extends Migration
                 'constraint' => 255,
                 'null'       => true,
             ],
+            'tenant' => [
+                'type' => 'INT',
+                'null' => true,
+            ],
             'status' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
@@ -114,6 +118,27 @@ class CreatePropertiesTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
                 'null'       => false,
+            ],
+            'transfer_to' => [
+                'type' => 'INT',
+                'null' => true,
+            ],
+            'transfer_date' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'default' => null,
+            ], 'annual_interest_rate' => [
+                'type' => 'FLOAT',
+                'null' => true,
+            ],
+            'payment_duration' => [
+                'type' => 'INT',
+                'null' => true,
+            ],
+            'deleted_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+                'default' => null,
             ],
         ]);
 
