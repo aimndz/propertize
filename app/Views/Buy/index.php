@@ -662,7 +662,9 @@ Propertize | Buy
                                 <div class="border bg-accent-900 border-accent-800 rounded-lg shadow flex flex-col">
                                     <a href="#" class="property-preview-trigger" data-modal-target="property-preview" data-modal-toggle="property-preview" data-property-id="<?= htmlspecialchars($property['property_id'], ENT_QUOTES, 'UTF-8'); ?>">
                                         <div class="block aspect-[4/3]">
-                                            <img class="rounded-t-lg w-full h-full object-cover" src="data:image/jpeg;base64,<?= $property['image']['image'] ?>" alt="property-image" />
+                                            <?php if (isset($property['image']['image']) && !empty($property['image']['image'])) : ?>
+                                                <img class="rounded-t-lg w-full h-full object-cover" src="data:image/jpeg;base64,<?= $property['image']['image'] ?>" alt="property-image" />
+                                            <?php endif; ?>
                                         </div>
                                         <div class="p-5 flex-grow flex flex-col justify-between">
                                             <div>

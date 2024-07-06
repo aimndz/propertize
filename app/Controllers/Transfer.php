@@ -31,7 +31,15 @@ class Transfer extends BaseController
         ];
 
         $propertiesModel = new PropertiesModel();
-        $propertiesModel->update($propertyId, $transferData);
+
+        // Update property data including status to 'sold'
+        $propertiesModel->update($propertyId, [
+            'transfer_to' => $transferData['transfer_to'],
+            'annual_interest_rate' => $transferData['annual_interest_rate'],
+            'payment_duration' => $transferData['payment_duration'],
+            'transfer_date' => $transferData['transfer_date'],
+            'status' => 'Sold' // Update status to 'Sold'
+        ]);
 
         $property = $propertiesModel->find($propertyId);
         $buyerId = $this->request->getPost('user_id');

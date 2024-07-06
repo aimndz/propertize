@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\PropertiesModel;
 use App\Models\UsersModel;
+use App\Models\PaymentTrackingModel;
 
 class Admin_overview extends Controller
 {
@@ -19,10 +20,14 @@ class Admin_overview extends Controller
         $usersModel = new UsersModel();
         $users = $usersModel->findAll();
 
+        $paymentTrackingModel = new PaymentTrackingModel();
+        $paymentTracking = $paymentTrackingModel->findAll();
+
         $data = [
             'allProperties' => $allProperties,
             'pendingProperties' => $pendingProperties,
             'users' => $users,
+            'paymentTracking' => $paymentTracking
         ];
 
         echo view('Admin_overview/index', $data);
