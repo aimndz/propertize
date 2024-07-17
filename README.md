@@ -13,7 +13,7 @@
   - **Frontend**
     - Tailwind CSS
     - Javascript
-  - **Frontend**
+  - **Backend**
     - CodeIgniter 4
     - MySQL
   
