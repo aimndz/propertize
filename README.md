@@ -1,4 +1,4 @@
-![Screenshot 2024-07-18 222019](https://github.com/user-attachments/assets/f323d121-ce9d-41e1-8572-eaa7ee8bdc1d)# Propertize
+# Propertize
 
 ## Description
   Propertize is a real estate management system designed to simplify buying, selling, and renting properties. Built with CodeIgniter 4.
