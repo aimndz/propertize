@@ -11,11 +11,11 @@
 
 ## Technologies Used
   - **Frontend**
-    - Tailwind CSS
-    - Javascript
+    - Tailwind CSS (Styles)
+    - Javascript (Vanilla)
   - **Backend**
-    - CodeIgniter 4
-    - MySQL
+    - CodeIgniter 4 (Framework)
+    - MySQL (Database)
 ## Screenshots
   ![Screenshot 2024-07-18 220700](https://github.com/user-attachments/assets/669e7873-4e32-4232-8d8e-c9b04269ae01)
   ![Screenshot 2024-07-18 222054](https://github.com/user-attachments/assets/98abcd4e-ea0c-43f1-8ba4-56b37c014bb8)
